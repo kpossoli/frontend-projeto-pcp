@@ -41,9 +41,9 @@ export class SidebarComponent {
   navigateToInicio() {
     const user = this.getUser();
     if (user.role === 'Administrador' || user.role === 'Docente') {
-      this.router.navigate(['/pagina-a']);
+      this.router.navigate(['/inicio']);
     } else if (user.role === 'Aluno') {
-      this.router.navigate(['/pagina-b']);
+      this.router.navigate(['/inicio']);
     }
   }
 

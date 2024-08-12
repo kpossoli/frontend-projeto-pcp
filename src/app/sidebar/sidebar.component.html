@@ -1,6 +1,6 @@
 <div class="sidebar" [class.collapsed]="isCollapsed">
   <button class="toggle-btn" (click)="toggleSidebar()">☰</button>
-  <ul>
+  <ul [class.hidden]="isCollapsed">
     <li>
       <a routerLink="/inicio" (click)="navigateToInicio()">Início</a>
     </li>

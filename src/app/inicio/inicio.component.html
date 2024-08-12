@@ -1,0 +1,36 @@
+<div class="inicio-container">
+  <section *ngIf="isAdmin() && !isAluno()" class="stats-section">
+    <h2>Estatísticas do Sistema</h2>
+    <div class="stat">
+      <span>Alunos cadastrados:</span> {{ studentCount }}
+    </div>
+    <div class="stat">
+      <span>Docentes cadastrados:</span> {{ teacherCount }}
+    </div>
+    <div class="stat">
+      <span>Turmas cadastradas:</span> {{ classCount }}
+    </div>
+  </section>
+
+  <section class="search-section" *ngIf="!isAluno()">
+    <h2>Alunos</h2>
+    <input
+      type="text"
+      placeholder="Buscar por nome, telefone ou e-mail"
+      [(ngModel)]="searchQuery"
+      (input)="filterStudents()"
+    />
+  </section>
+
+  <section class="students-list" *ngIf="!isAluno()">
+    <div *ngFor="let student of filteredStudents" class="student-card">
+      <div class="student-info">
+        <h3>{{ student.name }}</h3>
+        <p>Idade: {{ student.age }}</p>
+        <p>Contato: {{ student.contact }}</p>
+      </div>
+      <button *ngIf="isAdmin()" (click)="viewStudent(student.id)">Ver mais</button>
+      <button *ngIf="isDocente()" (click)="launchGrade(student.id)">Lançar nota</button>
+    </div>
+  </section>
+</div>

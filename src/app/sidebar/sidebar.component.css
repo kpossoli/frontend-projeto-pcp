@@ -10,7 +10,7 @@
 }
 
 .sidebar.collapsed {
-  width: 50px;
+  width: 0px;
 }
 
 .toggle-btn {
@@ -26,6 +26,10 @@
 ul {
   list-style-type: none;
   padding: 0;
+}
+
+ul.hidden {
+  display: none;
 }
 
 li {

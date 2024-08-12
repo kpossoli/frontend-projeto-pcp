@@ -22,6 +22,7 @@ export class LoginComponent {
     const user = this.users.find(u => u.email === this.email && u.password === this.password);
     if (user) {
       alert(`Bem-vindo, ${user.role}`);
+      localStorage.setItem('currentUser', JSON.stringify(user))
       this.router.navigate(['/inicio']);
     } else {
       alert('Usuário e/ou senha incorretos');
