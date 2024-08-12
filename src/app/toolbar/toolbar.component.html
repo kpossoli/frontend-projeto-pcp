@@ -1,0 +1,13 @@
+<div class="toolbar">
+  <div class="title">{{ pageTitle }}</div>
+  <div class="user-info">
+    <span class="user-name">{{ userName }}</span>
+    <img [src]="userIcon" alt="User Icon" class="user-icon">
+    <div class="dropdown" *ngIf="showDropdown">
+      <button class="dropdown-btn">▼</button>
+      <div class="dropdown-content">
+        <a href="#" (click)="logout()">Sair</a>
+      </div>
+    </div>
+  </div>
+</div>
