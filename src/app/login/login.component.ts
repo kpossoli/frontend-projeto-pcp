@@ -23,7 +23,12 @@ export class LoginComponent {
     if (user) {
       alert(`Bem-vindo, ${user.role}`);
       localStorage.setItem('currentUser', JSON.stringify(user))
-      this.router.navigate(['/inicio']);
+      if (user.role == 'Aluno') {
+        this .router.navigate(['/inicio-aluno']);
+      } else {
+        this .router.navigate(['/inicio']);
+      }
+
     } else {
       alert('Usuário e/ou senha incorretos');
     }

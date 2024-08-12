@@ -43,7 +43,7 @@ export class SidebarComponent {
     if (user.role === 'Administrador' || user.role === 'Docente') {
       this.router.navigate(['/inicio']);
     } else if (user.role === 'Aluno') {
-      this.router.navigate(['/inicio']);
+      this.router.navigate(['/inicio-aluno']);
     }
   }
 

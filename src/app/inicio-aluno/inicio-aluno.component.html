@@ -1,0 +1,30 @@
+<div class="inicio-aluno-container">
+  <section class="minhas-avaliacoes">
+    <h2>Minhas Avaliações</h2>
+    <ul>
+      <li *ngFor="let avaliacao of ultimasAvaliacoes" (click)="goToNotas(avaliacao.id)">
+        <h3>{{ avaliacao.nome }}</h3>
+        <p>Matéria: {{ avaliacao.materia }}</p>
+        <p>Data: {{ avaliacao.data }}</p>
+      </li>
+    </ul>
+  </section>
+
+  <section class="minhas-materias">
+    <h2>Minhas Matérias</h2>
+    <ul>
+      <li *ngFor="let materia of materias">
+        <h3>{{ materia.nome }}</h3>
+      </li>
+    </ul>
+  </section>
+
+  <section class="cursos-extras">
+    <h2>Cursos Extras</h2>
+    <ul>
+      <li *ngFor="let curso of cursosExtras">
+        <h3>{{ curso.nome }}</h3>
+      </li>
+    </ul>
+  </section>
+</div>
