@@ -1,0 +1,22 @@
+.login-container {
+  max-width: 400px;
+  margin: 50px auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.btn {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+a {
+  display: block;
+  text-align: center;
+  margin-top: 10px;
+}
