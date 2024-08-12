@@ -1,0 +1,29 @@
+<div class="sidebar" [class.collapsed]="isCollapsed">
+  <button class="toggle-btn" (click)="toggleSidebar()">☰</button>
+  <ul>
+    <li>
+      <a routerLink="/inicio" (click)="navigateToInicio()">Início</a>
+    </li>
+    <li *ngIf="isAdmin()">
+      <a routerLink="/cadastro-docente">Cadastro Docente</a>
+    </li>
+    <li *ngIf="isAdmin()">
+      <a routerLink="/cadastro-aluno">Cadastro de Aluno</a>
+    </li>
+    <li *ngIf="isAdmin() || isDocente()">
+      <a routerLink="/cadastro-turma">Cadastro de Turma</a>
+    </li>
+    <li *ngIf="isAdmin() || isDocente()">
+      <a routerLink="/cadastro-avaliacao">Cadastro de Avaliação/Nota</a>
+    </li>
+    <li *ngIf="isAdmin()">
+      <a routerLink="/listagem-docentes">Listagem de Docentes</a>
+    </li>
+    <li *ngIf="isAluno()">
+      <a routerLink="/notas">Notas</a>
+    </li>
+    <li>
+      <button (click)="logout()">Sair</button>
+    </li>
+  </ul>
+</div>

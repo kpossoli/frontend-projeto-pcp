@@ -7,6 +7,12 @@ import { LoginComponent } from './login/login.component';
 export const routes: Routes = [
   { path: 'login', component: LoginComponent },
   // { path: 'inicio', component: InicioComponent },
+  // { path: 'cadastro-docente', component: CadastroDocenteComponent },
+  // { path: 'cadastro-aluno', component: CadastroAlunoComponent },
+  // { path: 'cadastro-turma', component: CadastroTurmaComponent },
+  // { path: 'cadastro-avaliacao', component: CadastroAvaliacaoComponent },
+  // { path: 'listagem-docentes', component: ListagemDocentesComponent },
+  // { path: 'notas', component: NotasComponent },
   { path: '', redirectTo: '/login', pathMatch: 'full' }
 ];
 
