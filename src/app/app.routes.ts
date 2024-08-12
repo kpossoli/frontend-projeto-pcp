@@ -9,6 +9,7 @@ import { CadastroDocenteComponent } from './cadastro-docente/cadastro-docente.co
 import { CadastroAlunoComponent } from './cadastro-aluno/cadastro-aluno.component';
 import { CadastroTurmaComponent } from './cadastro-turma/cadastro-turma.component';
 import { CadastroAvaliacaoComponent } from './cadastro-avaliacao/cadastro-avaliacao.component';
+import { ListagemDocentesComponent } from './listagem-docentes/listagem-docentes.component';
 
 export const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -18,7 +19,7 @@ export const routes: Routes = [
   { path: 'cadastro-aluno', component: CadastroAlunoComponent },
   { path: 'cadastro-turma', component: CadastroTurmaComponent },
   { path: 'cadastro-avaliacao', component: CadastroAvaliacaoComponent },
-  // { path: 'listagem-docentes', component: ListagemDocentesComponent },
+  { path: 'listagem-docentes', component: ListagemDocentesComponent },
   // { path: 'notas', component: NotasComponent },
   { path: '', redirectTo: '/login', pathMatch: 'full' }
 ];
@@ -37,7 +38,8 @@ export const routes: Routes = [
     CadastroDocenteComponent,
     CadastroAlunoComponent,
     CadastroTurmaComponent,
-    CadastroAvaliacaoComponent
+    CadastroAvaliacaoComponent,
+    ListagemDocentesComponent
   ]
 })
 export class AppRoutingModule { }

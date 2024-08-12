@@ -1,0 +1,16 @@
+<div class="listagem-docentes-container">
+  <h2>Listagem de Docentes</h2>
+
+  <!-- Barra de Pesquisa -->
+  <div class="form-group">
+    <input type="text" placeholder="Buscar por nome ou ID" class="form-control" [(ngModel)]="searchQuery" (input)="filtrarDocentes()">
+  </div>
+
+  <!-- Listagem de Docentes -->
+  <div *ngFor="let docente of docentesFiltrados" class="docente-card">
+    <p><strong>ID:</strong> {{ docente.id }}</p>
+    <p><strong>Nome:</strong> {{ docente.nome }}</p>
+    <p><strong>Contato:</strong> {{ docente.contato }}</p>
+    <button class="btn btn-primary" (click)="verMais(docente.id)">Ver mais</button>
+  </div>
+</div>

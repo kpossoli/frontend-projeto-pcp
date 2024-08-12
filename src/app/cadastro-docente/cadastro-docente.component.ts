@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-cadastro-docente',
@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 })
 export class CadastroDocenteComponent implements OnInit {
   docente: any = {
+    id: '',
     nome: '',
     genero: '',
     dataNascimento: '',
@@ -31,17 +32,31 @@ export class CadastroDocenteComponent implements OnInit {
 
   materiasDisponiveis = ['Matemática', 'Física', 'Química', 'História', 'Geografia', 'Inglês'];
 
-  constructor(private router: Router) {}
+  constructor(private route: ActivatedRoute, private router: Router) {}
 
   ngOnInit(): void {
     if (!this.isAdmin()) {
       this.router.navigate(['/inicio']);
+    }
+
+    const docenteId = this.route.snapshot.queryParamMap.get('id');
+    if (docenteId) {
+      this.carregarDocente(docenteId);
     }
   }
 
   isAdmin(): boolean {
     const user = JSON.parse(localStorage.getItem('currentUser') || '{}');
     return user.role === 'Administrador';
+  }
+
+  carregarDocente(id: string) {
+    const docentes = JSON.parse(localStorage.getItem('docentes') || '[]');
+    const docente = docentes.find((d: any) => d.id === id);
+
+    if (docente) {
+      this.docente = { ...docente };
+    }
   }
 
   buscarEndereco() {
@@ -58,40 +73,31 @@ export class CadastroDocenteComponent implements OnInit {
 
   onSubmit() {
     if (this.validateDocente()) {
-      this.docente.id = this.generateUniqueId();
+      if (!this.docente.id) {
+        this.docente.id = this.generateUniqueId();
+      }
 
       // Recuperar a lista de docentes do localStorage
       let docentes = JSON.parse(localStorage.getItem('docentes') || '[]');
 
-      // Adicionar o novo docente à lista
-      docentes.push(this.docente);
+      // Verificar se é uma edição ou um novo cadastro
+      const index = docentes.findIndex((d: any) => d.id === this.docente.id);
+      if (index > -1) {
+        // Editar
+        docentes[index] = this.docente;
+      } else {
+        // Novo Cadastro
+        docentes.push(this.docente);
+      }
 
       // Salvar a lista atualizada no localStorage
       localStorage.setItem('docentes', JSON.stringify(docentes));
 
-      // Criar um novo usuário do tipo Docente
-      const novoUsuario = {
-        id: this.generateUniqueId(),
-        nome: this.docente.nome,
-        email: this.docente.email,
-        senha: this.docente.senha, // Em uma aplicação real, nunca armazenar a senha em texto claro
-        role: 'Docente'
-      };
-
-      // Recuperar a lista de usuários do localStorage
-      let usuarios = JSON.parse(localStorage.getItem('usuarios') || '[]');
-
-      // Adicionar o novo usuário à lista
-      usuarios.push(novoUsuario);
-
-      // Salvar a lista atualizada no localStorage
-      localStorage.setItem('usuarios', JSON.stringify(usuarios));
-
       // Exibir uma mensagem de sucesso
-      alert('Docente e usuário cadastrados com sucesso!');
+      alert('Docente salvo com sucesso!');
 
-      // Redirecionar para a página inicial ou para outra página
-      this.router.navigate(['/inicio']);
+      // Redirecionar para a página de listagem de docentes ou outra página
+      this.router.navigate(['/listagem-docentes']);
     }
   }
 
