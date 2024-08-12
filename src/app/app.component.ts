@@ -11,7 +11,7 @@ import { CommonModule } from '@angular/common';
     RouterOutlet,
     SidebarComponent,
     ToolbarComponent,
-    CommonModule,
+    CommonModule
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'

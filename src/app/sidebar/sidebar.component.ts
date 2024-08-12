@@ -10,7 +10,7 @@ import { CommonModule } from '@angular/common';
   imports: [CommonModule]
 })
 export class SidebarComponent {
-  isCollapsed: boolean = false;
+  isCollapsed: boolean = true;
 
   constructor(private router: Router) {}
 

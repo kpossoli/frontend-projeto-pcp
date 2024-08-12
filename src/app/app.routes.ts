@@ -5,13 +5,13 @@ import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { InicioComponent } from './inicio/inicio.component';
 import { InicioAlunoComponent } from './inicio-aluno/inicio-aluno.component';
-
+import { CadastroDocenteComponent } from './cadastro-docente/cadastro-docente.component';
 
 export const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'inicio', component: InicioComponent },
   { path: 'inicio-aluno', component: InicioAlunoComponent },
-  // { path: 'cadastro-docente', component: CadastroDocenteComponent },
+  { path: 'cadastro-docente', component: CadastroDocenteComponent },
   // { path: 'cadastro-aluno', component: CadastroAlunoComponent },
   // { path: 'cadastro-turma', component: CadastroTurmaComponent },
   // { path: 'cadastro-avaliacao', component: CadastroAvaliacaoComponent },
@@ -30,7 +30,8 @@ export const routes: Routes = [
   declarations: [
     LoginComponent,
     InicioComponent,
-    InicioAlunoComponent
+    InicioAlunoComponent,
+    CadastroDocenteComponent
   ]
 })
 export class AppRoutingModule { }
