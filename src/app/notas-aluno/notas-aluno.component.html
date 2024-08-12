@@ -1,0 +1,24 @@
+<div class="notas-aluno-container">
+  <h2>Histórico de Notas</h2>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Turma</th>
+        <th>Docente</th>
+        <th>Matéria</th>
+        <th>Avaliação</th>
+        <th>Nota</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let avaliacao of historicoAvaliacoes">
+        <td>{{ avaliacao.turma }}</td>
+        <td>{{ avaliacao.professor }}</td>
+        <td>{{ avaliacao.materia }}</td>
+        <td>{{ avaliacao.nomeAvaliacao }}</td>
+        <td>{{ avaliacao.notaAvaliacao }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

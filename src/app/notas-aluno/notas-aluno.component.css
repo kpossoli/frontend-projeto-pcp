@@ -1,0 +1,26 @@
+.notas-aluno-container {
+  padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.table {
+  width: 100%;
+  margin-bottom: 20px;
+  background-color: #fff;
+  border-collapse: collapse;
+}
+
+.table th, .table td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.table th {
+  background-color: #f2f2f2;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+  background-color: #f9f9f9;
+}
