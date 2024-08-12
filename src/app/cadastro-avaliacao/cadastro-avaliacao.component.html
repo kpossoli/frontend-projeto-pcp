@@ -1,0 +1,65 @@
+<div class="cadastro-avaliacao-container">
+    <h2>Cadastro de Avaliação/Nota</h2>
+    <form (ngSubmit)="onSubmit()" #avaliacaoForm="ngForm">
+
+      <!-- Seleção da Turma -->
+      <div class="form-group">
+        <label for="turma">Selecione a Turma</label>
+        <select id="turma" name="turma" class="form-control" [(ngModel)]="avaliacao.turma" required>
+          <option *ngFor="let turma of turmasDisponiveis" [value]="turma">{{ turma }}</option>
+        </select>
+      </div>
+
+      <!-- Professor -->
+      <div class="form-group">
+        <label for="professor">Professor</label>
+        <select id="professor" name="professor" class="form-control" [(ngModel)]="avaliacao.professor" required>
+          <option *ngFor="let professor of professoresDisponiveis" [value]="professor">{{ professor }}</option>
+        </select>
+      </div>
+
+      <!-- Nome da Matéria -->
+      <div class="form-group">
+        <label for="materia">Nome da Matéria</label>
+        <select id="materia" name="materia" class="form-control" [(ngModel)]="avaliacao.materia" required>
+          <option *ngFor="let materia of materiasDisponiveis" [value]="materia">{{ materia }}</option>
+        </select>
+      </div>
+
+      <!-- Nome da Avaliação -->
+      <div class="form-group">
+        <label for="nomeAvaliacao">Nome da Avaliação</label>
+        <input type="text" id="nomeAvaliacao" name="nomeAvaliacao" class="form-control" [(ngModel)]="avaliacao.nomeAvaliacao"
+               required>
+      </div>
+
+      <!-- Data da Avaliação -->
+      <div class="form-group">
+        <label for="dataAvaliacao">Data da Avaliação</label>
+        <input type="date" id="dataAvaliacao" name="dataAvaliacao" class="form-control" [(ngModel)]="avaliacao.dataAvaliacao"
+               required>
+      </div>
+
+      <!-- Aluno -->
+      <div class="form-group">
+        <label for="aluno">Aluno</label>
+        <select id="aluno" name="aluno" class="form-control" [(ngModel)]="avaliacao.aluno" required>
+          <option *ngFor="let aluno of alunosDisponiveis" [value]="aluno">{{ aluno }}</option>
+        </select>
+      </div>
+
+      <!-- Nota Avaliação -->
+      <div class="form-group">
+        <label for="notaAvaliacao">Nota Avaliação</label>
+        <input type="number" id="notaAvaliacao" name="notaAvaliacao" class="form-control" [(ngModel)]="avaliacao.notaAvaliacao"
+               min="0" max="10" required>
+      </div>
+
+      <!-- Botões -->
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary" [disabled]="!avaliacaoForm.form.valid">Salvar</button>
+        <button type="button" class="btn btn-secondary" disabled>Editar</button>
+        <button type="button" class="btn btn-danger" disabled>Deletar</button>
+      </div>
+    </form>
+  </div>
