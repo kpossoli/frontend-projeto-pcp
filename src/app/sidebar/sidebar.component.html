@@ -8,7 +8,7 @@
       <a href="/cadastro-docente">Cadastro Docente</a>
     </li>
     <li *ngIf="isAdmin()">
-      <a routerLink="/cadastro-aluno">Cadastro de Aluno</a>
+      <a href="/cadastro-aluno">Cadastro de Aluno</a>
     </li>
     <li *ngIf="isAdmin() || isDocente()">
       <a routerLink="/cadastro-turma">Cadastro de Turma</a>
