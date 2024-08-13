@@ -12,14 +12,12 @@ import { Router } from '@angular/router';
 export class ToolbarComponent implements OnInit {
   pageTitle: string = 'Título da Página';
   userName: string = '';
-  userIcon: string = 'path/to/default-icon.png'; // Coloque o caminho do ícone padrão
+  userIcon: string = 'user.webp';
   showDropdown: boolean = true;
 
   constructor(private router: Router) {}
 
   ngOnInit() {
-    this.userName = this.getUser().name;
-    this.userIcon = this.getUser().icon;
     this.updatePageTitle();
   }
 
