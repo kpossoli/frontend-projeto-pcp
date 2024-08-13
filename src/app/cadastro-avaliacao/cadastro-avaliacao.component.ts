@@ -81,7 +81,7 @@ export class CadastroAvaliacaoComponent implements OnInit {
 
   initializeAlunosDropdown() {
     this.alunosDisponiveis = JSON.parse(localStorage.getItem('alunos') || '[]');
-    // this.alunosFiltrados = [...this.alunosDisponiveis];
+    this.alunosFiltrados = [...this.alunosDisponiveis];
   }
 
   filtrarAlunos() {

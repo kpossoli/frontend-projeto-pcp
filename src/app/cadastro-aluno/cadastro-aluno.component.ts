@@ -129,6 +129,21 @@ export class CadastroAlunoComponent implements OnInit {
     }
   }
 
+  onDelete() {
+    if (confirm('Tem certeza que deseja deletar este aluno?')) {
+      let alunos = JSON.parse(localStorage.getItem('alunos') || '[]');
+      alunos = alunos.filter((a: any) => a.id !== this.aluno.id);
+      localStorage.setItem('alunos', JSON.stringify(alunos));
+
+      let usuarios = JSON.parse(localStorage.getItem('usuarios') || '[]');
+      usuarios = usuarios.filter((u: any) => u.id !== this.aluno.id);
+      localStorage.setItem('usuarios', JSON.stringify(usuarios));
+
+      alert('Aluno deletado com sucesso!');
+      this.router.navigate(['/inicio']);
+    }
+  }
+
   validateAluno() {
     // Adicione validações adicionais se necessário
     return true;
