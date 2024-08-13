@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-cadastro-aluno',
@@ -30,7 +31,7 @@ export class CadastroAlunoComponent implements OnInit {
 
   turmasDisponiveis: any[] = [];
 
-  constructor(private router: Router, private route: ActivatedRoute) {}
+  constructor(private router: Router, private route: ActivatedRoute, private http: HttpClient) {}
 
   ngOnInit(): void {
     if (!this.isAdmin()) {
@@ -70,15 +71,15 @@ export class CadastroAlunoComponent implements OnInit {
   }
 
   buscarEndereco() {
-    // if (this.aluno.cep) {
-    //   this.http.get(`https://viacep.com.br/ws/${this.aluno.cep}/json/`)
-    //     .subscribe((data: any) => {
-    //       this.aluno.logradouro = data.logradouro;
-    //       this.aluno.bairro = data.bairro;
-    //       this.aluno.cidade = data.localidade;
-    //       this.aluno.estado = data.uf;
-    //     });
-    // }
+    if (this.aluno.cep) {
+      this.http.get(`https://viacep.com.br/ws/${this.aluno.cep}/json/`)
+        .subscribe((data: any) => {
+          this.aluno.logradouro = data.logradouro;
+          this.aluno.bairro = data.bairro;
+          this.aluno.cidade = data.localidade;
+          this.aluno.estado = data.uf;
+        });
+    }
   }
 
   onSubmit() {

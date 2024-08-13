@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-cadastro-docente',
@@ -32,7 +33,7 @@ export class CadastroDocenteComponent implements OnInit {
 
   materiasDisponiveis = ['Matemática', 'Física', 'Química', 'História', 'Geografia', 'Inglês'];
 
-  constructor(private route: ActivatedRoute, private router: Router) {}
+  constructor(private route: ActivatedRoute, private router: Router, private http: HttpClient) {}
 
   ngOnInit(): void {
     if (!this.isAdmin()) {
@@ -60,15 +61,15 @@ export class CadastroDocenteComponent implements OnInit {
   }
 
   buscarEndereco() {
-    // if (this.docente.cep) {
-    //   this.http.get(`https://viacep.com.br/ws/${this.docente.cep}/json/`)
-    //     .subscribe((data: any) => {
-    //       this.docente.logradouro = data.logradouro;
-    //       this.docente.bairro = data.bairro;
-    //       this.docente.cidade = data.localidade;
-    //       this.docente.estado = data.uf;
-    //     });
-    // }
+    if (this.docente.cep) {
+      this.http.get(`https://viacep.com.br/ws/${this.docente.cep}/json/`)
+        .subscribe((data: any) => {
+          this.docente.logradouro = data.logradouro;
+          this.docente.bairro = data.bairro;
+          this.docente.cidade = data.localidade;
+          this.docente.estado = data.uf;
+        });
+    }
   }
 
   onSubmit() {
