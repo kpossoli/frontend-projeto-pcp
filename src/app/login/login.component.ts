@@ -11,9 +11,9 @@ export class LoginComponent {
   password: string = '';
 
   users = [
-    { email: 'admin@example.com', password: 'admin123', role: 'Administrador' },
-    { email: 'docente@example.com', password: 'docente123', role: 'Docente' },
-    { email: 'aluno@example.com', password: 'aluno123', role: 'Aluno' }
+    { id: 1, nome: 'Administrador', email: 'admin@example.com', password: 'admin123', role: 'Administrador' },
+    { id: 2, nome: 'Docente', email: 'docente@example.com', password: 'docente123', role: 'Docente' },
+    { id: 3, nome: 'Aluno', email: 'aluno@example.com', password: 'aluno123', role: 'Aluno' }
   ];
 
   constructor(private router: Router) {}

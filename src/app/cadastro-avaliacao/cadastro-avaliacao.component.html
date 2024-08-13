@@ -6,7 +6,7 @@
       <div class="form-group">
         <label for="turma">Selecione a Turma</label>
         <select id="turma" name="turma" class="form-control" [(ngModel)]="avaliacao.turma" required>
-          <option *ngFor="let turma of turmasDisponiveis" [value]="turma">{{ turma }}</option>
+          <option *ngFor="let turma of turmasDisponiveis" [value]="turma.id">{{ turma.nome }}</option>
         </select>
       </div>
 
@@ -14,7 +14,7 @@
       <div class="form-group">
         <label for="professor">Professor</label>
         <select id="professor" name="professor" class="form-control" [(ngModel)]="avaliacao.professor" required>
-          <option *ngFor="let professor of professoresDisponiveis" [value]="professor">{{ professor }}</option>
+          <option *ngFor="let professor of professoresDisponiveis" [value]="professor.id">{{ professor.nome }}</option>
         </select>
       </div>
 
@@ -36,7 +36,7 @@
       <!-- Data da Avaliação -->
       <div class="form-group">
         <label for="dataAvaliacao">Data da Avaliação</label>
-        <input type="date" id="dataAvaliacao" name="dataAvaliacao" class="form-control" [(ngModel)]="avaliacao.dataAvaliacao"
+        <input type="datetime-local" id="dataAvaliacao" name="dataAvaliacao" class="form-control" [(ngModel)]="avaliacao.dataAvaliacao"
                required>
       </div>
 
@@ -44,7 +44,7 @@
       <div class="form-group">
         <label for="aluno">Aluno</label>
         <select id="aluno" name="aluno" class="form-control" [(ngModel)]="avaliacao.aluno" required>
-          <option *ngFor="let aluno of alunosDisponiveis" [value]="aluno">{{ aluno }}</option>
+          <option *ngFor="let aluno of alunosDisponiveis" [value]="aluno.id">{{ aluno.nome }}</option>
         </select>
       </div>
 
@@ -58,8 +58,7 @@
       <!-- Botões -->
       <div class="form-group">
         <button type="submit" class="btn btn-primary" [disabled]="!avaliacaoForm.form.valid">Salvar</button>
-        <button type="button" class="btn btn-secondary" disabled>Editar</button>
-        <button type="button" class="btn btn-danger" disabled>Deletar</button>
+        <button type="button" class="btn btn-danger">Deletar</button>
       </div>
     </form>
   </div>

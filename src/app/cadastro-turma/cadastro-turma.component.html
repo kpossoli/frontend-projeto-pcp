@@ -36,15 +36,14 @@
       <div class="form-group">
         <label for="professor">Professor</label>
         <select id="professor" name="professor" class="form-control" [(ngModel)]="turma.professor" required>
-          <option *ngFor="let professor of professoresDisponiveis" [value]="professor">{{ professor }}</option>
+          <option *ngFor="let professor of professoresDisponiveis" [value]="professor.id">{{ professor.nome }}</option>
         </select>
       </div>
 
       <!-- Botões -->
       <div class="form-group">
         <button type="submit" class="btn btn-primary" [disabled]="!turmaForm.form.valid">Salvar</button>
-        <button type="button" class="btn btn-secondary" disabled>Editar</button>
-        <button type="button" class="btn btn-danger" disabled>Deletar</button>
+        <button type="button" class="btn btn-danger">Deletar</button>
       </div>
     </form>
   </div>

@@ -16,7 +16,7 @@
     <h2>Alunos</h2>
     <input
       type="text"
-      placeholder="Buscar por nome, telefone ou e-mail"
+      placeholder="Buscar por nome ou e-mail"
       [(ngModel)]="searchQuery"
       (input)="filterStudents()"
     />
@@ -25,9 +25,8 @@
   <section class="students-list" *ngIf="!isAluno()">
     <div *ngFor="let student of filteredStudents" class="student-card">
       <div class="student-info">
-        <h3>{{ student.name }}</h3>
-        <p>Idade: {{ student.age }}</p>
-        <p>Contato: {{ student.contact }}</p>
+        <h3>{{ student.nome }}</h3>
+        <p>Contato: {{ student.email }}</p>
       </div>
       <button *ngIf="isAdmin()" (click)="viewStudent(student.id)">Ver mais</button>
       <button *ngIf="isDocente()" (click)="launchGrade(student.id)">Lançar nota</button>

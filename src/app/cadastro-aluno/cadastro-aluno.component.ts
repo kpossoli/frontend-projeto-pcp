@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-cadastro-aluno',
@@ -28,19 +28,45 @@ export class CadastroAlunoComponent implements OnInit {
     turmas: []
   };
 
-  turmasDisponiveis = ['Turma A', 'Turma B', 'Turma C']; // Mock das turmas disponíveis
+  turmasDisponiveis: any[] = [];
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
     if (!this.isAdmin()) {
       this.router.navigate(['/inicio']);
     }
+
+    // Carregar as turmas disponíveis do localStorage
+    this.loadTurmasFromLocalStorage();
+
+    // Verificar se existe um ID passado como query param e carregar o aluno
+    const alunoId = this.route.snapshot.queryParamMap.get('id');
+    if (alunoId) {
+      this.carregarAluno(alunoId);
+    }
+  }
+
+  loadTurmasFromLocalStorage() {
+    // Carregar a lista de turmas do localStorage
+    this.turmasDisponiveis = JSON.parse(localStorage.getItem('turmas') || '[]');
   }
 
   isAdmin(): boolean {
     const user = JSON.parse(localStorage.getItem('currentUser') || '{}');
     return user.role === 'Administrador';
+  }
+
+  carregarAluno(id: string) {
+    const alunos = JSON.parse(localStorage.getItem('alunos') || '[]');
+    const aluno = alunos.find((a: any) => a.id === id);
+
+    if (aluno) {
+      this.aluno = { ...aluno };
+    } else {
+      alert('Aluno não encontrado!');
+      this.router.navigate(['/inicio']);
+    }
   }
 
   buscarEndereco() {

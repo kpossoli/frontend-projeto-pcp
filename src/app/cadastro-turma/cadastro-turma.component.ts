@@ -15,7 +15,7 @@ export class CadastroTurmaComponent implements OnInit {
     professor: ''
   };
 
-  professoresDisponiveis: string[] = [];
+  professoresDisponiveis: any[] = [];
 
   constructor(private router: Router) {}
 
@@ -52,10 +52,11 @@ export class CadastroTurmaComponent implements OnInit {
 
     if (this.isAdmin()) {
       // Exemplo de professores disponíveis; em uma aplicação real, isso viria de uma API ou do localStorage
-      this.professoresDisponiveis = ['Professor A', 'Professor B', 'Professor C'];
+      this.professoresDisponiveis = JSON.parse(localStorage.getItem('docentes') || '{}');
     } else if (this.isDocente()) {
-      this.professoresDisponiveis = [user.nome];
-      this.turma.professor = user.nome; // Preenche o dropdown com o nome do professor logado
+      this.professoresDisponiveis = [user];
+      this.turma.professor = user.id; // Preenche o dropdown com o nome do professor logado
+      this.turma.nome = user.nome;
     }
   }
 

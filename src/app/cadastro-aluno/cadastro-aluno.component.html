@@ -132,15 +132,14 @@
     <div class="form-group">
       <label for="turmas">Turmas</label>
       <select id="turmas" name="turmas" class="form-control" [(ngModel)]="aluno.turmas" multiple required>
-        <option *ngFor="let turma of turmasDisponiveis" [value]="turma">{{ turma }}</option>
+        <option *ngFor="let turma of turmasDisponiveis" [value]="turma.id">{{ turma.nome }}</option>
       </select>
     </div>
 
     <!-- Botões -->
     <div class="form-group">
       <button type="submit" class="btn btn-primary" [disabled]="!alunoForm.form.valid">Salvar</button>
-      <button type="button" class="btn btn-secondary" disabled>Editar</button>
-      <button type="button" class="btn btn-danger" disabled>Deletar</button>
+      <button type="button" class="btn btn-danger">Deletar</button>
     </div>
   </form>
 </div>

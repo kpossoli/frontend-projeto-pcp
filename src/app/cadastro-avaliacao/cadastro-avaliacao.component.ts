@@ -17,10 +17,10 @@ export class CadastroAvaliacaoComponent implements OnInit {
     notaAvaliacao: 0
   };
 
-  turmasDisponiveis: string[] = [];
-  professoresDisponiveis: string[] = [];
+  turmasDisponiveis: any[] = [];
+  professoresDisponiveis: any[] = [];
   materiasDisponiveis: string[] = ['Matemática', 'Física', 'Química', 'História', 'Geografia', 'Inglês'];
-  alunosDisponiveis: string[] = [];
+  alunosDisponiveis: any[] = [];
 
   constructor(private router: Router) {}
 
@@ -32,7 +32,23 @@ export class CadastroAvaliacaoComponent implements OnInit {
     this.initializeProfessorDropdown();
     this.initializeTurmasDropdown();
     this.initializeAlunosDropdown();
+    this.getCurrentDateTime();
+
   }
+
+  getCurrentDateTime() {
+    const now = new Date();
+
+    const year = now.getFullYear();
+    const month = String(now.getMonth() + 1).padStart(2, '0'); // Meses começam do 0
+    const day = String(now.getDate()).padStart(2, '0');
+
+    const hours = String(now.getHours()).padStart(2, '0');
+    const minutes = String(now.getMinutes()).padStart(2, '0');
+
+    this.avaliacao.dataAvaliacao = `${year}-${month}-${day}T${hours}:${minutes}`;
+  }
+
 
   isAdmin(): boolean {
     const user = JSON.parse(localStorage.getItem('currentUser') || '{}');
@@ -49,21 +65,21 @@ export class CadastroAvaliacaoComponent implements OnInit {
 
     if (this.isAdmin()) {
       // Exemplo de professores disponíveis; em uma aplicação real, isso viria de uma API ou do localStorage
-      this.professoresDisponiveis = ['Professor A', 'Professor B', 'Professor C'];
+      this.professoresDisponiveis = JSON.parse(localStorage.getItem('docentes') || '[]');
     } else if (this.isDocente()) {
-      this.professoresDisponiveis = [user.nome];
-      this.avaliacao.professor = user.nome; // Preenche o dropdown com o nome do professor logado
+      this.professoresDisponiveis = [user];
+      this.avaliacao.professor = user.id; // Preenche o dropdown com o nome do professor logado
     }
   }
 
   initializeTurmasDropdown() {
     // Exemplo de turmas disponíveis; em uma aplicação real, isso viria de uma API ou do localStorage
-    this.turmasDisponiveis = ['Turma A', 'Turma B', 'Turma C'];
+    this.turmasDisponiveis = JSON.parse(localStorage.getItem('turmas') || '[]');
   }
 
   initializeAlunosDropdown() {
     // Exemplo de alunos disponíveis; em uma aplicação real, isso viria de uma API ou do localStorage
-    this.alunosDisponiveis = ['Aluno 1', 'Aluno 2', 'Aluno 3'];
+    this.alunosDisponiveis = JSON.parse(localStorage.getItem('alunos') || '[]');
   }
 
   onSubmit() {

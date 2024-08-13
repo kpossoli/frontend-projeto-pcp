@@ -10,7 +10,7 @@
   <div *ngFor="let docente of docentesFiltrados" class="docente-card">
     <p><strong>ID:</strong> {{ docente.id }}</p>
     <p><strong>Nome:</strong> {{ docente.nome }}</p>
-    <p><strong>Contato:</strong> {{ docente.contato }}</p>
+    <p><strong>Contato:</strong> {{ docente.email }}</p>
     <button class="btn btn-primary" (click)="verMais(docente.id)">Ver mais</button>
   </div>
 </div>
