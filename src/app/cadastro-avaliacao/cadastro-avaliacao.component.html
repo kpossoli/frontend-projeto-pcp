@@ -43,9 +43,14 @@
       <!-- Aluno -->
       <div class="form-group">
         <label for="aluno">Aluno</label>
-        <select id="aluno" name="aluno" class="form-control" [(ngModel)]="avaliacao.aluno" required>
-          <option *ngFor="let aluno of alunosDisponiveis" [value]="aluno.id">{{ aluno.nome }}</option>
-        </select>
+        <input type="text" id="aluno" name="aluno" class="form-control" [(ngModel)]="alunoSearch" (input)="filtrarAlunos()" placeholder="Digite o nome do aluno" required>
+        <div class="autocomplete-options" *ngIf="alunosFiltrados.length > 0">
+          <ul class="list-group">
+            <li *ngFor="let aluno of alunosFiltrados" (click)="selectAluno(aluno)" class="list-group-item list-group-item-action">
+              {{ aluno.nome }}
+            </li>
+          </ul>
+        </div>
       </div>
 
       <!-- Nota Avaliação -->

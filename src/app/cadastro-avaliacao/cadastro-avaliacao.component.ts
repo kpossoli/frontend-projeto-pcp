@@ -21,6 +21,8 @@ export class CadastroAvaliacaoComponent implements OnInit {
   professoresDisponiveis: any[] = [];
   materiasDisponiveis: string[] = ['Matemática', 'Física', 'Química', 'História', 'Geografia', 'Inglês'];
   alunosDisponiveis: any[] = [];
+  alunosFiltrados: any[] = [];
+  alunoSearch: string = '';
 
   constructor(private router: Router) {}
 
@@ -78,8 +80,25 @@ export class CadastroAvaliacaoComponent implements OnInit {
   }
 
   initializeAlunosDropdown() {
-    // Exemplo de alunos disponíveis; em uma aplicação real, isso viria de uma API ou do localStorage
     this.alunosDisponiveis = JSON.parse(localStorage.getItem('alunos') || '[]');
+    // this.alunosFiltrados = [...this.alunosDisponiveis];
+  }
+
+  filtrarAlunos() {
+    const query = this.alunoSearch.toLowerCase();
+
+    // Verifica se o usuário digitou pelo menos 3 caracteres
+    if (query.length >= 3) {
+      this.alunosFiltrados = this.alunosDisponiveis.filter(aluno => aluno.nome.toLowerCase().includes(query));
+    } else {
+      this.alunosFiltrados = []; // Limpa a lista se menos de 3 caracteres forem digitados
+    }
+  }
+
+  selectAluno(aluno: any) {
+    this.avaliacao.aluno = aluno.id;
+    this.alunoSearch = aluno.nome;
+    this.alunosFiltrados = []; // Limpa a lista de sugestões após a seleção
   }
 
   onSubmit() {
