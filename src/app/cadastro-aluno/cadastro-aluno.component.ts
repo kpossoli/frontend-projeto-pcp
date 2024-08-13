@@ -84,37 +84,45 @@ export class CadastroAlunoComponent implements OnInit {
 
   onSubmit() {
     if (this.validateAluno()) {
-      this.aluno.id = this.generateUniqueId();
-
       // Recuperar a lista de alunos do localStorage
       let alunos = JSON.parse(localStorage.getItem('alunos') || '[]');
 
-      // Adicionar o novo aluno à lista
-      alunos.push(this.aluno);
+      // Verificar se é uma edição ou um novo cadastro
+      const index = alunos.findIndex((a: any) => a.id === this.aluno.id);
 
-      // Salvar a lista atualizada no localStorage
+      if (index > -1) {
+        // Atualizar o aluno existente
+        alunos[index] = this.aluno;
+      } else {
+        // Gerar um novo ID para o aluno
+        this.aluno.id = this.generateUniqueId();
+        // Adicionar o novo aluno à lista
+        alunos.push(this.aluno);
+
+        // Criar um novo usuário do tipo Aluno
+        const novoUsuario = {
+          id: this.aluno.id,
+          nome: this.aluno.nome,
+          email: this.aluno.email,
+          senha: this.aluno.senha,  // Em uma aplicação real, nunca armazenar a senha em texto claro
+          role: 'Aluno'
+        };
+
+        // Recuperar a lista de usuários do localStorage
+        let usuarios = JSON.parse(localStorage.getItem('usuarios') || '[]');
+
+        // Adicionar o novo usuário à lista
+        usuarios.push(novoUsuario);
+
+        // Salvar a lista atualizada no localStorage
+        localStorage.setItem('usuarios', JSON.stringify(usuarios));
+      }
+
+      // Salvar a lista de alunos atualizada no localStorage
       localStorage.setItem('alunos', JSON.stringify(alunos));
 
-      // Criar um novo usuário do tipo Aluno
-      const novoUsuario = {
-        id: this.generateUniqueId(),
-        nome: this.aluno.nome,
-        email: this.aluno.email,
-        senha: this.aluno.senha,  // Em uma aplicação real, nunca armazenar a senha em texto claro
-        role: 'Aluno'
-      };
-
-      // Recuperar a lista de usuários do localStorage
-      let usuarios = JSON.parse(localStorage.getItem('usuarios') || '[]');
-
-      // Adicionar o novo usuário à lista
-      usuarios.push(novoUsuario);
-
-      // Salvar a lista atualizada no localStorage
-      localStorage.setItem('usuarios', JSON.stringify(usuarios));
-
       // Exibir uma mensagem de sucesso
-      alert('Aluno e usuário cadastrados com sucesso!');
+      alert('Aluno salvo com sucesso!');
 
       // Redirecionar para a página inicial ou para outra página
       this.router.navigate(['/inicio']);
